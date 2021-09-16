@@ -24,6 +24,7 @@ namespace BE_Drink.Models
         [Column(TypeName = "nvarchar(max)")]
         public string cover_img { get; set; }
 
+        [Required(ErrorMessage = "Money is required")]
         [Column(TypeName = "money")]
         public decimal price { get; set; }
 

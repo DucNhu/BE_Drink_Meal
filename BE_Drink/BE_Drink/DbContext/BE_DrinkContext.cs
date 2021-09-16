@@ -14,5 +14,6 @@ namespace BE_Drink.DbContext
         {
         }
         public DbSet<BE_Drink.Models.Product> products { get; set; }
+
     }
 }
