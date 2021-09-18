@@ -2,7 +2,7 @@
 
 namespace BE_Drink.Migrations
 {
-    public partial class register : Migration
+    public partial class addColumnFullName : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

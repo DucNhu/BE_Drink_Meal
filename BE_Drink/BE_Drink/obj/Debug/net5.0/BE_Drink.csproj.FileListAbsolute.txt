@@ -180,3 +180,6 @@ C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin
 C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\MailKit.dll
+C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\MimeKit.dll
+C:\Users\Pc\Documents\GitHub\LearnInFPT\ProjectIV\BE_Drink\BE_Drink\BE_Drink\bin\Debug\net5.0\BouncyCastle.Crypto.dll

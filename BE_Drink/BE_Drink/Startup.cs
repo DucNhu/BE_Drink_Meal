@@ -1,21 +1,19 @@
 ﻿using BE_Drink.Config;
 using BE_Drink.DbContext;
+using BE_Drink.service.email;
+using BE_Drink.Settings.MailSettings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using System.IO;
-using System.Linq;
-using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+using System.Text;
 
 namespace BE_Drink
 {
@@ -91,8 +89,8 @@ namespace BE_Drink
 
             });
 
-            //services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
-            //services.AddTransient<IMailService, Services.MailService>();
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, MailService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

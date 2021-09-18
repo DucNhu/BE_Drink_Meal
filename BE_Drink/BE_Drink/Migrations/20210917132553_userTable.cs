@@ -3,21 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BE_Drink.Migrations
 {
-    public partial class test_valid_field : Migration
+    public partial class userTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "name",
-                table: "products",
-                type: "nvarchar(250)",
-                maxLength: 250,
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(256)",
-                oldNullable: true);
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -37,6 +26,12 @@ namespace BE_Drink.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: true),
+                    isShipper = table.Column<bool>(type: "bit", nullable: true),
+                    isActive = table.Column<bool>(type: "bit", nullable: true),
+                    type = table.Column<int>(type: "int", nullable: true),
+                    status = table.Column<bool>(type: "bit", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -55,6 +50,35 @@ namespace BE_Drink.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "products",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    banner_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cover_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    price = table.Column<decimal>(type: "money", nullable: false),
+                    sale = table.Column<decimal>(type: "money", nullable: false),
+                    desciption = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    availability = table.Column<int>(type: "int", nullable: false),
+                    unit = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    storage_instructions = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    view = table.Column<int>(type: "int", nullable: false),
+                    revenue = table.Column<decimal>(type: "money", nullable: false),
+                    returned = table.Column<int>(type: "int", nullable: false),
+                    status = table.Column<int>(type: "int", nullable: false),
+                    seller_id = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    category_id = table.Column<int>(type: "int", nullable: false),
+                    create_at = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    update_at = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_products", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,8 +127,8 @@ namespace BE_Drink.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -148,8 +172,8 @@ namespace BE_Drink.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -221,19 +245,13 @@ namespace BE_Drink.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "products");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "name",
-                table: "products",
-                type: "nvarchar(256)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(250)",
-                oldMaxLength: 250);
         }
     }
 }
