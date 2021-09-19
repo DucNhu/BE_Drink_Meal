@@ -11,6 +11,6 @@ namespace BE_Drink.Models.Dtos.requests
         [Required]
         public string email { get; set; }
         [Required]
-        public string PassWord { get; set; }
+        public string password { get; set; }
     }
 }

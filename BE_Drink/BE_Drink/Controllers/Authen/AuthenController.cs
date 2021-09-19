@@ -129,7 +129,7 @@ namespace BE_Drink.Controllers.authen
                     });
                 }
 
-                var isCorrect = await _userManager.CheckPasswordAsync(existingUser, user.PassWord); //  Check pass hash với pass truyền vào qua bộ lọc
+                var isCorrect = await _userManager.CheckPasswordAsync(existingUser, user.password); //  Check pass hash với pass truyền vào qua bộ lọc
 
                 if (!isCorrect)
                 {
