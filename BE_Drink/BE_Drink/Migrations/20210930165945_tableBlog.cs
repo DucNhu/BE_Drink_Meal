@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BE_Drink.Migrations
 {
-    public partial class userTable : Migration
+    public partial class tableBlog : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,7 @@ namespace BE_Drink.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    fullName = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     isAdmin = table.Column<bool>(type: "bit", nullable: true),
                     isShipper = table.Column<bool>(type: "bit", nullable: true),
                     isActive = table.Column<bool>(type: "bit", nullable: true),
@@ -53,6 +54,62 @@ namespace BE_Drink.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BlogClass",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    banner_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cover_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    cooking_time = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    summary = table.Column<string>(type: "nvarchar(500)", nullable: false),
+                    desciption = table.Column<string>(type: "nvarchar(500)", nullable: true),
+                    availability = table.Column<int>(type: "int", nullable: false),
+                    url_video_utube = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    view = table.Column<int>(type: "int", nullable: false),
+                    status = table.Column<int>(type: "int", nullable: false),
+                    user_id = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    category_id = table.Column<int>(type: "int", nullable: false),
+                    create_at = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    update_at = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BlogClass", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "contents",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    unit = table.Column<string>(type: "nvarchar(256)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_contents", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "metarials",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    title = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    order = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_metarials", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "products",
                 columns: table => new
                 {
@@ -63,7 +120,7 @@ namespace BE_Drink.Migrations
                     cover_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     price = table.Column<decimal>(type: "money", nullable: false),
                     sale = table.Column<decimal>(type: "money", nullable: false),
-                    desciption = table.Column<string>(type: "nvarchar(256)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     availability = table.Column<int>(type: "int", nullable: false),
                     unit = table.Column<string>(type: "nvarchar(256)", nullable: true),
                     storage_instructions = table.Column<string>(type: "nvarchar(500)", nullable: true),
@@ -79,6 +136,22 @@ namespace BE_Drink.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_products", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Step",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    banner_img = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    desciption = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    order = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Step", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,7 +318,19 @@ namespace BE_Drink.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BlogClass");
+
+            migrationBuilder.DropTable(
+                name: "contents");
+
+            migrationBuilder.DropTable(
+                name: "metarials");
+
+            migrationBuilder.DropTable(
                 name: "products");
+
+            migrationBuilder.DropTable(
+                name: "Step");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

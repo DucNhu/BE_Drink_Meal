@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BE_Drink.Models.BlogF;
+using BE_Drink.Models;
 
 namespace BE_Drink.DbContext
 {
@@ -16,5 +18,9 @@ namespace BE_Drink.DbContext
         public DbSet<BE_Drink.Models.Product> products { get; set; }
         public DbSet<BE_Drink.Models.Customer.User> users { get; set; }
 
+        public DbSet<BE_Drink.Models.BlogF.Metarial> metarials { get; set; }
+        public DbSet<BE_Drink.Models.BlogF.Content> contents { get; set; }
+        public DbSet<BE_Drink.Models.Blog.Step> Step { get; set; }
+        public DbSet<BE_Drink.Models.Bloger> Blogers { get; set; }
     }
 }

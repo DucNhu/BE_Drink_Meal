@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE_Drink.Models
 {
-    public class Blog
+    public class Bloger
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,15 +24,12 @@ namespace BE_Drink.Models
         [Column(TypeName = "nvarchar(max)")]
         public string cover_img { get; set; }
 
-        [Display(Name = "Date")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [DataType(DataType.Date)]
-        public decimal cooking_time { get; set; }
+        public String cooking_time { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
         public decimal summary { get; set; }
 
-        [Column(TypeName = "nvarchar(256)")]
+        [Column(TypeName = "nvarchar(500)")]
         public string desciption { get; set; }
 
         [Column(TypeName = "int")]

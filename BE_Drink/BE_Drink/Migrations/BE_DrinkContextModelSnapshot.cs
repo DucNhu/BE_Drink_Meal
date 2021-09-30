@@ -19,6 +19,135 @@ namespace BE_Drink.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BE_Drink.Models.Blog.Step", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("banner_img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("desciption")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("order")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Step");
+                });
+
+            modelBuilder.Entity("BE_Drink.Models.BlogF.Content", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("unit")
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("contents");
+                });
+
+            modelBuilder.Entity("BE_Drink.Models.BlogF.Metarial", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("metarials");
+                });
+
+            modelBuilder.Entity("BE_Drink.Models.Bloger", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("availability")
+                        .HasColumnType("int");
+
+                    b.Property<string>("banner_img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("category_id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("cooking_time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("cover_img")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("create_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("desciption")
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("update_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("url_video_utube")
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("user_id")
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("view")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Blogers");
+                });
+
             modelBuilder.Entity("BE_Drink.Models.Product", b =>
                 {
                     b.Property<long>("id")
@@ -41,7 +170,7 @@ namespace BE_Drink.Migrations
                     b.Property<DateTime>("create_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("desciption")
+                    b.Property<string>("description")
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("name")

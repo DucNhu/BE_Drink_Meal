@@ -32,7 +32,7 @@ namespace BE_Drink.Models
         public decimal sale { get; set; }
 
         [Column(TypeName = "nvarchar(256)")]
-        public string desciption { get; set; }
+        public string description { get; set; }
 
         [Column(TypeName = "int")]
         public int availability { get; set; }
