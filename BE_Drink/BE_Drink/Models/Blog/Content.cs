@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BE_Drink.Models.BlogF
 {
@@ -20,6 +16,9 @@ namespace BE_Drink.Models.BlogF
 
         [Column(TypeName = "nvarchar(max)")]
         public string content { get; set; }
+
+        [Column(TypeName = "nvarchar(max)")]
+        public string banner_img { get; set; }
 
         [Column(TypeName = "nvarchar(256)")]
         public string unit { get; set; }

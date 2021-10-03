@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BE_Drink.Models.BlogF;
 using BE_Drink.Models;
+using BE_Drink.Models.Blog;
+using BE_Drink.Models.Product;
 
 namespace BE_Drink.DbContext
 {
@@ -15,12 +17,15 @@ namespace BE_Drink.DbContext
             : base(options)
         {
         }
-        public DbSet<BE_Drink.Models.Product> products { get; set; }
+        public DbSet<BE_Drink.Models.ProductTable> products { get; set; }
         public DbSet<BE_Drink.Models.Customer.User> users { get; set; }
 
         public DbSet<BE_Drink.Models.BlogF.Metarial> metarials { get; set; }
         public DbSet<BE_Drink.Models.BlogF.Content> contents { get; set; }
         public DbSet<BE_Drink.Models.Blog.Step> Step { get; set; }
         public DbSet<BE_Drink.Models.Bloger> Blogers { get; set; }
+        public DbSet<BE_Drink.Models.Blog.ImgContentFeature> ImgContentFeature { get; set; }
+        public DbSet<BE_Drink.Models.Blog.ImgStepFeature> ImgStepFeature { get; set; }
+        public DbSet<BE_Drink.Models.Product.ImgProductFeature> ImgProductFeature { get; set; }
     }
 }

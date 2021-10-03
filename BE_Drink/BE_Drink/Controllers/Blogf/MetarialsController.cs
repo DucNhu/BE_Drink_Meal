@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BE_Drink.DbContext;
 using BE_Drink.Models.BlogF;
+using BE_Drink.Models.Blog;
 
 namespace BE_Drink.Controllers.Blogf
 {
@@ -84,6 +85,20 @@ namespace BE_Drink.Controllers.Blogf
             return CreatedAtAction("GetMetarial", new { id = metarial.id }, metarial);
         }
 
+        //[HttpPost]
+        //public async Task<ActionResult> PostListMetarial([FromBody]listMetarial listMetarials)
+        //{
+        //     Console.WriteLine(listMetarials);
+        //    //foreach (var item in listMetarials)
+        //    //{
+        //    ////    _context.metarials.Add(item);
+        //    //await _context.ksaveChangesAsync();
+
+        //    //await CreatedAtAction("GetMetarial", new { id = metarial.id }, metarial);
+        //    //}
+
+        //    return Ok();
+        //}
         // DELETE: api/Metarials/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMetarial(long id)

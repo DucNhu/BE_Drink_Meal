@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BE_Drink.Models
 {
-    public class Product
+    public class ProductTable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

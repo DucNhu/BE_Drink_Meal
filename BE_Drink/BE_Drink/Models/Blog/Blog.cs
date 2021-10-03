@@ -24,7 +24,7 @@ namespace BE_Drink.Models
         [Column(TypeName = "nvarchar(max)")]
         public string cover_img { get; set; }
 
-        public String cooking_time { get; set; }
+        public string cooking_time { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
         public decimal summary { get; set; }
