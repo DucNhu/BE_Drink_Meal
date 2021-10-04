@@ -24,8 +24,6 @@ namespace BE_Drink.DbContext
         public DbSet<BE_Drink.Models.BlogF.Content> contents { get; set; }
         public DbSet<BE_Drink.Models.Blog.Step> Step { get; set; }
         public DbSet<BE_Drink.Models.Bloger> Blogers { get; set; }
-        public DbSet<BE_Drink.Models.Blog.ImgContentFeature> ImgContentFeature { get; set; }
-        public DbSet<BE_Drink.Models.Blog.ImgStepFeature> ImgStepFeature { get; set; }
         public DbSet<BE_Drink.Models.Product.ImgProductFeature> ImgProductFeature { get; set; }
     }
 }

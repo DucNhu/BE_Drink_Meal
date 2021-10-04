@@ -4,20 +4,58 @@ using BE_Drink.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BE_Drink.Migrations
 {
     [DbContext(typeof(BE_DrinkContext))]
-    partial class BE_DrinkContextModelSnapshot : ModelSnapshot
+    [Migration("20211003123243_blogFix2")]
+    partial class blogFix2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BE_Drink.Models.Blog.ImgContentFeature", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("avatar_feature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("content_id")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ImgContentFeature");
+                });
+
+            modelBuilder.Entity("BE_Drink.Models.Blog.ImgStepFeature", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("avatar_feature")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("step_id")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ImgStepFeature");
+                });
 
             modelBuilder.Entity("BE_Drink.Models.Blog.Step", b =>
                 {
@@ -28,9 +66,6 @@ namespace BE_Drink.Migrations
 
                     b.Property<string>("banner_img")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
 
                     b.Property<string>("desciption")
                         .HasColumnType("nvarchar(max)");
@@ -55,14 +90,8 @@ namespace BE_Drink.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("banner_cover")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("banner_img")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
 
                     b.Property<string>("content")
                         .HasColumnType("nvarchar(max)");
@@ -71,6 +100,9 @@ namespace BE_Drink.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("unit")
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("id");
 
@@ -84,11 +116,8 @@ namespace BE_Drink.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("mass")
-                        .HasColumnType("int");
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("order")
                         .HasColumnType("int");
@@ -97,9 +126,6 @@ namespace BE_Drink.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("unit")
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("id");
 
@@ -140,6 +166,7 @@ namespace BE_Drink.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("summary")
+                        .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("update_at")
@@ -149,7 +176,6 @@ namespace BE_Drink.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("user_id")
-                        .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("view")

@@ -20,7 +20,11 @@ namespace BE_Drink.Models.BlogF
         [Column(TypeName = "nvarchar(max)")]
         public string banner_img { get; set; }
 
-        [Column(TypeName = "nvarchar(256)")]
-        public string unit { get; set; }
+        [Column(TypeName = "nvarchar(max)")]
+        public string banner_cover { get; set; }
+
+        [Required]
+        [Column(TypeName = "int")]
+        public int blog_id { get; set; }
     }
 }

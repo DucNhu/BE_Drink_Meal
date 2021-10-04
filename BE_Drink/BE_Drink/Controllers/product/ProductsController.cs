@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BE_Drink.Models;
 using BE_Drink.DbContext;
+using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
 
 namespace BE_Drink.Controllers
 {
@@ -15,20 +18,46 @@ namespace BE_Drink.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly BE_DrinkContext _context;
+        private readonly IConfiguration _configuration;
 
-        public ProductsController(BE_DrinkContext context)
+        public ProductsController(BE_DrinkContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
-        // GET: api/Products
+        //GET: api/Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductTable>>> Getproducts()
         {
             return await _context.products.ToListAsync();
         }
 
-        // GET: api/Products/5
+        [Route("GetImgProductFeature/{id}")]
+        [HttpGet]
+        public JsonResult GetImgProductFeature(long id)
+        {
+
+            string query = @"
+                            select * from ImgProductFeature
+                            where ImgProductFeature.product_id = " + id;
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("BE_DrinkContext");
+            SqlDataReader myRender;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            {
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myRender = myCommand.ExecuteReader();
+                    table.Load(myRender);
+                    myRender.Close(); myCon.Close();
+                }
+            }
+            return new JsonResult(table);
+        }
+
+        //GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductTable>> GetProduct(long id)
         {

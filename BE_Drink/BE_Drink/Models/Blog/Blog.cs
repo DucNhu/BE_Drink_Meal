@@ -27,13 +27,10 @@ namespace BE_Drink.Models
         public string cooking_time { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
-        public decimal summary { get; set; }
+        public string summary { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
-        public string desciption { get; set; }
-
-        [Column(TypeName = "int")]
-        public int availability { get; set; }
+        public string description { get; set; }
 
         [Column(TypeName = "nvarchar(256)")]
         public string url_video_utube { get; set; }
@@ -44,6 +41,7 @@ namespace BE_Drink.Models
         [Column(TypeName = "int")]
         public int status { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(256)")]
         public string user_id { get; set; }
 

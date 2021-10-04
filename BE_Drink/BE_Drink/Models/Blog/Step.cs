@@ -1,5 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BE_Drink.Models.Blog
 {
@@ -21,5 +25,9 @@ namespace BE_Drink.Models.Blog
         public string desciption { get; set; }
 
         public int order { get; set; }
+
+        [Required]
+        [Column(TypeName = "int")]
+        public int blog_id { get; set; }
     }
 }

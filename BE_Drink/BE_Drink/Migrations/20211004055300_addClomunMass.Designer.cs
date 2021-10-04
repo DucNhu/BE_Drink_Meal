@@ -4,14 +4,16 @@ using BE_Drink.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BE_Drink.Migrations
 {
     [DbContext(typeof(BE_DrinkContext))]
-    partial class BE_DrinkContextModelSnapshot : ModelSnapshot
+    [Migration("20211004055300_addClomunMass")]
+    partial class addClomunMass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace BE_Drink.Migrations
 
                     b.Property<string>("banner_img")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
 
                     b.Property<string>("desciption")
                         .HasColumnType("nvarchar(max)");
@@ -61,9 +60,6 @@ namespace BE_Drink.Migrations
                     b.Property<string>("banner_img")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
-
                     b.Property<string>("content")
                         .HasColumnType("nvarchar(max)");
 
@@ -83,9 +79,6 @@ namespace BE_Drink.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("blog_id")
-                        .HasColumnType("int");
 
                     b.Property<int>("mass")
                         .HasColumnType("int");
@@ -149,7 +142,6 @@ namespace BE_Drink.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("user_id")
-                        .IsRequired()
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<int>("view")

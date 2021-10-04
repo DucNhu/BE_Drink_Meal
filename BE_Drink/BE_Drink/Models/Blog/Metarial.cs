@@ -14,9 +14,17 @@ namespace BE_Drink.Models.BlogF
         [Required(ErrorMessage = "Name is required")]
         public string title { get; set; }
 
-        [Column(TypeName = "nvarchar(max)")]
-        public string description { get; set; }
+        [Column(TypeName = "int")]
+        public int mass { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string unit { get; set; }
 
         public int order { get; set; }
+
+        [Required]
+        [Column(TypeName = "int")]
+        public int blog_id { get; set; }
+
     }
 }
