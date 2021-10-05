@@ -21,9 +21,10 @@ namespace BE_Drink.Controllers.Blogf
         private readonly BE_DrinkContext _context;
         private readonly IConfiguration _configuration;
 
-        public MetarialsController(BE_DrinkContext context)
+        public MetarialsController(BE_DrinkContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: api/Metarials
@@ -53,8 +54,7 @@ namespace BE_Drink.Controllers.Blogf
         {
 
             string query = @"
-                            select * from ImgProductFeature
-                            where ImgProductFeature.product_id = " + id;
+                            select * from metarials where metarials.blog_id =  " + id;
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("BE_DrinkContext");
             SqlDataReader myRender;

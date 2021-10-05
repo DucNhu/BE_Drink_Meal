@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BE_Drink.DbContext;
 using BE_Drink.Models;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BE_Drink.Controllers.Blogf
 {
@@ -15,10 +18,12 @@ namespace BE_Drink.Controllers.Blogf
     public class BlogeresController : ControllerBase
     {
         private readonly BE_DrinkContext _context;
+        private readonly IConfiguration _configuration;
 
-        public BlogeresController(BE_DrinkContext context)
+        public BlogeresController(BE_DrinkContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: api/Blogeres
@@ -41,6 +46,69 @@ namespace BE_Drink.Controllers.Blogf
 
             return Bloger;
         }
+//        [Route("GetBloger/{id}")]
+//        [HttpGet]
+//        public JsonResult GetBloger(long id)
+//        {
+
+//            string query = @"
+//                            select 
+//Blogers.banner_img,
+//Blogers.cooking_time,
+//Blogers.category_id,
+//Blogers.cover_img,
+//Blogers.create_at,
+//Blogers.create_at,
+//Blogers.description,
+//Blogers.id,
+//Blogers.name,
+//Blogers.status,
+//Blogers.summary,
+//Blogers.update_at,
+//Blogers.url_video_utube,
+//Blogers.user_id,
+//Blogers.[view],
+
+//contents.name as 'content_name',
+//contents.banner_cover as 'content_banner_cover',
+//contents.banner_img as 'content_banner_img',
+//contents.content as 'content_content',
+//contents.id as 'content_content',
+
+//metarials.id as 'metarials_id',
+//metarials.mass as 'metarials_mass',
+//metarials.title as 'metarials_title',
+//metarials.unit as 'metarials_unit',
+//metarials.[order] as 'content_content',
+
+//Step.banner_img as 'Step_banner_img',
+//Step.blog_id as 'Step_blog_id',
+//Step.desciption as 'Step_desciption',
+//Step.id as 'Step_id',
+//Step.name as 'Step_name',
+//Step.[order] as 'Step_order'
+
+//from Blogers
+//inner join contents on contents.blog_id = Blogers.id
+//inner join metarials on metarials.blog_id = Blogers.id
+//inner join Step on Step.blog_id = Blogers.id
+//where Blogers.id = " + id;
+//            DataTable table = new DataTable();
+//            string sqlDataSource = _configuration.GetConnectionString("BE_DrinkContext");
+//            SqlDataReader myRender;
+//            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+//            {
+//                myCon.Open();
+//                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+//                {
+//                    myRender = myCommand.ExecuteReader();
+//                    table.Load(myRender);
+//                    myRender.Close(); myCon.Close();
+//                }
+//            }
+//            return new JsonResult(table);
+//        }
+
 
         // PUT: api/Blogeres/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

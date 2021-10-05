@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BE_Drink.DbContext;
 using BE_Drink.Models.Blog;
+using Microsoft.Extensions.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace BE_Drink.Controllers.Blogf
 {
@@ -15,10 +18,12 @@ namespace BE_Drink.Controllers.Blogf
     public class StepsController : ControllerBase
     {
         private readonly BE_DrinkContext _context;
+        private readonly IConfiguration _configuration;
 
-        public StepsController(BE_DrinkContext context)
+        public StepsController(BE_DrinkContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: api/Steps
@@ -29,18 +34,42 @@ namespace BE_Drink.Controllers.Blogf
         }
 
         // GET: api/Steps/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Step>> GetStep(long id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Step>> GetStep(long id)
+        //{
+        //    var step = await _context.Step.FindAsync(id);
+
+        //    if (step == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return step;
+        //}
+
+        [Route("GetStep/{id}")]
+        [HttpGet]
+        public JsonResult GetStep(long id)
         {
-            var step = await _context.Step.FindAsync(id);
 
-            if (step == null)
+            string query = @"
+                            select * from Step where Step.blog_id =  " + id;
+            DataTable table = new DataTable();
+            string sqlDataSource = _configuration.GetConnectionString("BE_DrinkContext");
+            SqlDataReader myRender;
+            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
-                return NotFound();
+                myCon.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                {
+                    myRender = myCommand.ExecuteReader();
+                    table.Load(myRender);
+                    myRender.Close(); myCon.Close();
+                }
             }
-
-            return step;
+            return new JsonResult(table);
         }
+
 
         // PUT: api/Steps/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
