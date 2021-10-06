@@ -22,7 +22,7 @@ namespace BE_Drink.Models.Blog
         public string banner_img { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
-        public string desciption { get; set; }
+        public string description { get; set; }
 
         public int order { get; set; }
 
